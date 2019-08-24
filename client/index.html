@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+  <head>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
+    <script>
+      let ctx = document.getElemntById("ctx").getContext("2d")
+      
+      ctx.font = '30px Arial';
+      
+      var socket = io();
+      
+      socket.on('newPositions', (data) => {
+        ctx.clearRect(0,0,500,500)
+        for(var i =0; i > data.length; i++) {
+          ctx.fillsheet('P', data[i].x, data[i].y);     
+        }
+      });
+    </script>
+  </head>
+</html>
