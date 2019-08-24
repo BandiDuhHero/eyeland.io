@@ -12,8 +12,40 @@ app.use('/client', express.static(__dirname + 'client', express.static(dirname +
 
 serv.listen(2000);
 
+console.log('Server Opened');
+
+let SOCKET_LIST = {};
+
 let io = require('socket.io');
 
 io.sockets.on('connection', (socket) => {
     console.log('Socket Connection');
+    socket.id = Math.random(); 
+    socket.x = 0;       
+    socket.y = 0;
+    socket.number = Math.floor(10 * Math.random()).toString();
+    SOCKET_List[socket.id] = socket
+    
+    
 });
+
+io.sockets.on('disconnect', () => {
+    delete SOCKET_LIST[socket.id];
+});
+
+setInterval(() => { 
+    let pack = [];
+    for(var i in SOCKET_LIST) {
+        let socket = SOCKET_LIST[i];    
+        socket.x++;
+        socket.y++;
+        pack.push({
+            x:socket.x,
+            y:socket.y
+        });
+    }
+    
+    for(var i in SOCKET_LIST) {
+        let socket = SOCKET_LIST[i];
+        socket.emit('newPositions', pack);
+}, 1000/25);
