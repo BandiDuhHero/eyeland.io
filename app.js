@@ -14,6 +14,16 @@ serv.listen(2000);
 
 console.log('Server Opened');
 
+class User {
+    constructor(name, level, exp, skins) {
+        this.name = name;
+        this.level = level;
+        this.exp = exp;
+        this.skins = skins
+    }
+
+}
+
 let SOCKET_LIST = {};
 
 let io = require('socket.io');
