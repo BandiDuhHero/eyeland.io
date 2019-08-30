@@ -34,9 +34,7 @@ io.sockets.on('connection', (socket) => {
     socket.x = 0;       
     socket.y = 0;
     socket.number = Math.floor(10 * Math.random()).toString();
-    SOCKET_List[socket.id] = socket
-    
-    
+    SOCKET_LIST[socket.id] = socket;
 });
 
 io.sockets.on('disconnect', () => {
