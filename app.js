@@ -14,19 +14,46 @@ serv.listen(2000);
 
 console.log('Server Opened');
 
+
+let SOCKET_LIST = {};
+
+let PLAYER_LIST = {};
+
+let io = require('socket.io');
+
 class User {
-    constructor(name, level, exp, skins) {
+    constructor(name, level, exp, skins, isPlayer, isSpec) {
         this.name = name;
         this.level = level;
         this.exp = exp;
-        this.skins = skins
+        this.skins = skin;
+        this.isSpec = false;
+        this.isPlayer = false;
+        
     }
 
 }
 
-let SOCKET_LIST = {};
+class Weapon {
+    constructor(damage, speed, range, cooldown, health) {
+        this.damage = damage;
+        this.speed = speed;
+        this.range = range;
+        this.cooldown = cooldown
+        this.health = health;
+    }
+}
 
-let io = require('socket.io');
+class Weapon {
+    constructor(damage, speed, range, durability, health) {
+        this.damage = damage;
+        this.speed = speed;
+        this.range = range;
+        this.cooldown = cooldown
+        this.health = health;
+    }
+}
+
 
 io.sockets.on('connection', (socket) => {
     console.log('Socket Connection');
