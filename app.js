@@ -34,27 +34,6 @@ class User {
 
 }
 
-class Weapon {
-    constructor(damage, speed, range, cooldown, health) {
-        this.damage = damage;
-        this.speed = speed;
-        this.range = range;
-        this.cooldown = cooldown
-        this.health = health;
-    }
-}
-
-class Weapon {
-    constructor(damage, speed, range, durability, health) {
-        this.damage = damage;
-        this.speed = speed;
-        this.range = range;
-        this.cooldown = cooldown
-        this.health = health;
-    }
-}
-
-
 io.sockets.on('connection', (socket) => {
     console.log('Socket Connection');
     socket.id = Math.random(); 
