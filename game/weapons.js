@@ -1,10 +1,9 @@
-class Weapon {
-    constructor(damage, speed, range, cooldown) {
-        this.damage = damage;
-        this.speed = speed;
-        this.range = range;
-        this.cooldown = cooldown
-        this.health = health;
+class Sword {
+    constructor(id, atk, atkspd, heaviness) {
+        this.id = id;
+        this.atk = atk;
+        this.atkspd = atkspd;
+        this.heaviness = heaviness;
     }
 }
 
