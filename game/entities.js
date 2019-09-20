@@ -13,7 +13,7 @@ class Entity {
 
 class Player extends Entity {
   constructor(x, y, id, role, armor, weapon, base) {
-    super(x, y, id)
+    super(x, y, id);
     this.role = role;
     this.armor = armor;
     this.weapon = weapon;
@@ -21,17 +21,28 @@ class Player extends Entity {
     this.inventory = [];
     this.regentime = 5;
     this.regenamt = 5;
-    this.atkspd = 5;
+    this.atkspd = 1;
     this.atk = 10;
-    this.def = 10;
-    this.spd = 10;
+    this.def = 2;
+    this.spd = 1;
     this.hp = 100;
     this.crystalhp = 100;
+  }
+  attack(targ) {
+    if(targ.id = 'eye') {
+      targ.hp -= targ.atk/10;
+    }
+    if(targ.id = 'crystal') {
+      targ.hp -= targ.atk/5;
+    }
+    else {
+      targ.hp -= targ.atk/targ.def; 
+    }
+    
   }
   spawn(loc) {
     if(loc = 'base') {
       var base = this.base.split(',');
-      
       this.x = parseInt(base[0]);
       this.y = parseInt(base[1]);
     }
@@ -40,7 +51,7 @@ class Player extends Entity {
     if(this.crystalhp === 0) {
       super.despawn();
     }
-    else () {
+    else {
       this.spawn('base');
     }
   }
