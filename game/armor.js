@@ -1,11 +1,8 @@
 class Armor {
-    constructor(def, hp, regenamt, regentime, spd, atkspd) {
+    constructor(id, def, heaviness) {
+        this.id = id
         this.def = def;
-        this.hp = hp;
-        this.regenamt = regenamt;
-        this.regentime = regentime;
-        this.spd = spd;
-        this.atkspd = atkspd;
+        this.heaviness = heaviness;
         
     }
 }
