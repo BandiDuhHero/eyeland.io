@@ -1,0 +1,24 @@
+{
+  "name": "eyeland.io",
+  "version": "1.0.0",
+  "description": "HTML5 Browser Game",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BandiDuhHero/eyeland.io.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BandiDuhHero/eyeland.io/issues"
+  },
+  "homepage": "https://github.com/BandiDuhHero/eyeland.io#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "http": "0.0.0",
+    "socket.io": "^2.3.0"
+  }
+}

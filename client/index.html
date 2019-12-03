@@ -1,20 +1,62 @@
 <!doctype html>
 <html>
-  <head>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.0.3/socket.io.js"></script>
-    <script>
-      let ctx = document.getElemntById("ctx").getContext("2d")
-      
-      ctx.font = '30px Arial';
-      
-      var socket = io();
-      
-      socket.on('newPositions', (data) => {
-        ctx.clearRect(0,0,500,500)
-        for(var i =0; i > data.length; i++) {
-          ctx.fillsheet('P', data[i].x, data[i].y);     
-        }
-      });
-    </script>
-  </head>
+
+<head>
+    <title>Eyeland</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <br/>
+    <center>
+        <h1 style=font-size:50px>Eyeland</h1>
+	</center>
+    <div id="overlay"></div>
+    <!--<div id="logo"></div>-->
+    <div id="player-menu">
+        <input type="text" name="displayname" placeholder="Display Name" id="display-name-input">
+        <br /> 
+		<button name="play" id="play-btn">Play</button><br />
+        <select name="servers" id="server-list" class="dropdown-form">
+            <option value="na">North America</option>
+            <option value="sa">South America</option>
+            <option value="euro">Europe</option>
+            <option value="asia">Asia</option>
+            <option value="aus">Australia</option>
+        </select>
+        <select name="gamemodes" id="game-mode-list" class="dropdown-form">
+            <option value="solo">Solo</option>
+            <option value="teams">Teams</option>
+            <option value="sandbox">Sandbox</option>
+        </select>
+        <br />
+        <button name="settings" id="settings-btn" class="start-menu-btn">Settings</button>
+        <br />
+        <button name="texture" class="start-menu-btn">Texture</button>
+        <button name="skin" class="start-menu-btn">Skin</button><br>
+		<button name="Weapon" class="start-menu-btn-mini">Weapon</button>
+		<button name="Role" class="start-menu-btn-mini">Role</button>
+        <button name="Armor" class="start-menu-btn-mini">Armor</button>
+        <br />
+    </div>
+    <div id="user-menu">
+		<p>Bandi<p>
+		<p>50 Eyecoins</p>
+		<p>Games: 200 Wins: 5 K/D: 0.2 DMGPG: 60</p>
+		<p>20 exp/500</p>
+		<button name="Account" class="menu-btn">Account</button>
+	</div>
+	<div id="side-menu">
+		<h2>News</h2>
+		<p>We our Officially in Beta, if you are viewing this right now that means you are one of the few people with early access</p>
+        <button name="howtoplay" class="menu-btn">How To Play</button>
+        <button name="leaderboard" class="menu-btn">Leaderboard</button>
+		<button name="updatelog" class="menu-btn">Update Log</button>
+		<button name="newslog" class="menu-btn">News Log</button>
+	</div>
+
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="serv.js"></script> -->
+</body>
+
 </html>

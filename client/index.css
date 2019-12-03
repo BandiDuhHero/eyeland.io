@@ -1,0 +1,148 @@
+#overlay {
+	position: fixed;
+	display: block;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background-image: url(img/home-background.jpg);
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	z-index: -1;
+	cursor: pointer;
+}
+#logo {
+	display: block;
+	position: absolute;
+	background-image: url();
+	background-repeat: no-repeat;
+	background-position: center;
+}
+#player-menu {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -125px;
+	display: block;
+	width: 400px;
+	height: 250px;
+	border-radius: 20px;
+	background: rgba(201, 207, 219, .6);
+	text-align: center;
+	text-shadow: 0 1px 0 black;
+}
+#user-menu {
+	position: absolute;
+	top: 50%;
+	right: 150px;
+	margin-top: -125px;
+	display: block;
+	width: 300px;
+	height: 250px;
+	border-radius: 20px;
+	background: rgba(201, 207, 219, .6);
+	text-align: center;
+	color: white;
+	text-shadow: 0 1px 0 black;
+}
+#side-menu {
+	position: absolute;
+	top: 50%;
+	left: 150px;
+	margin-top: -125px;
+	display: block;
+	width: 300px;
+	height: 250px;
+	border-radius: 20px;
+	background: rgba(201, 207, 219, .6);	
+	text-align: center;
+	color: white;
+	text-shadow: 0 1px 0 black;
+}
+#display-name-input {
+	width: 100px;
+	height: 15px;
+	margin-top: 15px;
+	margin-bottom: 10px;
+	font-size: 15px;
+	font-weight: 100;
+	padding: 0;
+	text-align: center;
+	cursor: initial;
+	background-color: white;
+	border-right: 50px solid #4877D0; 
+	border-left: 50px solid #4877D0; 
+	border-bottom: 15px solid #4877D0; 
+	border-top: 15px solid #4877D0; 
+	outline: 2px solid black;
+}
+#display-name-input:focus {
+	background-color: #4877D0;
+}
+::placeholder { 
+  color: black;
+  opacity: 1;
+}
+#game-mode-list {
+	width: 77.5px;
+	height: 18px;
+	background-color: #4877D0;
+	border: 1px solid black;
+}
+#server-list {
+	width: 117.5px;
+	height: 18px;
+	background-color: #4877D0;
+	border: 1px solid black;
+}
+#play-btn {
+	height: 35px;
+	width: 200px;
+	background-color: #4877D0;
+	border: 2px solid black;
+	border-radius: 1px;
+	font-size: 15px;
+	font-weight: bold;
+}
+#play-btn:hover {
+	background-color: #B544FF;
+}
+#settings-btn {
+	width: 200px;
+}
+
+.start-menu-btn {
+	height: 25px;
+	width: 97.5px;
+	display: inline-block;
+	margin-top: 10px;
+	background-color: #4877D0;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+.start-menu-btn:hover {
+	background-color: #B544FF;
+}
+.start-menu-btn-mini {
+	width: 64px;
+	display: inline-block;
+	margin-top: 10px;
+	background-color: #4877D0;
+	border: 1px solid black;
+	border-radius: 10px;
+}
+.start-menu-btn-mini:hover {
+	background-color: #B544FF;
+}
+.menu-btn {
+	width: 100px;
+	display: inline-block;
+	margin-top: 10px;
+}
+.dropdown-form {
+	display: inline-block;
+	margin-top: 10px;
+}

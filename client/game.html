@@ -1,0 +1,114 @@
+<!doctype html>
+<html>
+<head>
+<title>Eyeland</title>
+</head>
+<body>
+<canvas id="ctx" width="500" height="500" style="border:1px solid #000000;"></canvas>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script>
+let socket = io();
+let WIDTH = 500;
+let HEIGHT = 500;
+let Img = {};
+	Img.Map = new Image();
+	Img.Map.src = '/client/img/maps/testmap1.png';
+	Img.Player = new Image();
+	Img.Player.onload = function() {};
+	Img.Player.src = '/client/img/player/body.png';
+let ctx = document.getElementById("ctx").getContext("2d");
+    //ctx.font = '30px Arial';
+
+	let players = {};
+	let socketId = null;
+	
+	socket.on('newPlayer', function(data) {	
+		socketId = data.socketId;
+		players = data;
+	});
+	
+	socket.on('update', function(data){
+		//{ player : [{id:123,x:0,y:0},{id:1,x:0,y:0}], bullet: []}
+		for(let i = 0; i < data.player.length; i++) {
+			let pack = data.player[i];
+			let p = players[pack.id];
+			if(p){
+				p = pack;
+			}
+		}
+	});
+	
+	socket.on('remove',function(data) {
+		//{player:[12323],bullet:[12323,123123]}
+		for(let i = 0 ; i < data.player.length; i++){
+			delete players[data.player[i]];
+		}
+	});
+	
+	
+	
+	
+	let writeGameInfo = function() {
+		ctx.fillStyle = 'white';
+		ctx.fillText(players[socketId].score,0,30);
+	}
+	
+   setInterval(function() {
+		/*if(!socketId) {
+			return;
+		}*/
+
+		//Clear Map
+		ctx.clearRect(0,0,500,500);
+		//Draw Map
+		let x = WIDTH/2 - players[socketId].x;
+		let y = HEIGHT/2 - players[socketId].y;
+		ctx.drawImage(Img.Map,x,y);
+		
+		//Write Blinks, Time, and Other important info
+		//writeGameInfo();
+		
+		//Draw Players
+		for(let i in players) {
+			let x = self.x - players[socketId].x + WIDTH/2;
+			let y = self.y - players[socketId].y + HEIGHT/2;
+			
+			let hpWidth = 30 * players[i].hp / 100;
+			ctx.fillStyle = 'red';
+			ctx.fillRect(x - hpWidth/2, y - 40, hpWidth, 4);
+			
+			let width = Img.Player.width*2;
+			let height = Img.Player.height*2;
+			
+			
+			ctx.drawImage(Img.Player,
+				0,0,Img.Player.width,Img.Player.height,
+				x - width/2, y - height/2, width, height);
+				}
+	}, 40);
+ 
+    document.onkeydown = function(event) {
+        if(event.keyCode === 68)    //d
+            socket.emit('keyPress',{inputId:'right',state:true});
+        else if(event.keyCode === 83)   //s
+            socket.emit('keyPress',{inputId:'down',state:true});
+        else if(event.keyCode === 65) //a
+            socket.emit('keyPress',{inputId:'left',state:true});
+        else if(event.keyCode === 87) // w
+            socket.emit('keyPress',{inputId:'up',state:true});
+           
+    }
+    document.onkeyup = function(event) {
+        if(event.keyCode === 68)    //d
+            socket.emit('keyPress',{inputId:'right',state:false});
+        else if(event.keyCode === 83)   //s
+            socket.emit('keyPress',{inputId:'down',state:false});
+        else if(event.keyCode === 65) //a
+            socket.emit('keyPress',{inputId:'left',state:false});
+        else if(event.keyCode === 87) // w
+            socket.emit('keyPress',{inputId:'up',state:false});
+    }
+
+</script> 
+</body>
+</html>
