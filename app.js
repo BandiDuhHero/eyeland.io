@@ -15,38 +15,56 @@ serv.listen(2000);
 console.log("Server started.");
  
 let SOCKET_LIST = {};
-var initPack = {player:[]};
-var removePack = {players: []};
-let io = require('socket.io')(serv,{});
+let io = require('socket.io') (serv, {});
 
 io.sockets.on('connection', function(socket){
     socket.id = Math.random();
     SOCKET_LIST[socket.id] = socket;
-	Game.players[socket.id] = new Entities.Player(5, 10, 'bandi', Roles.Masochist, Armor.Plague, Weapons.Infected, Game.BaseData[socket.id]);
+	Game.players[socket.id] = new Entities.Player(5, 10, socket.id, Roles.Masochist, Armor.Plague, Weapons.Infected, Game.BaseData[socket.id]);
     let player = Game.players[socket.id];
-	player.onConnect(socket);
-	initPack.player.push(player);
-	console.log(initPack);
-	console.log('player'  + Object.keys(player));
-	console.log('sockId' + socket.id);
+    socket.on('keyPress', function(data) {
+        if(data.inputId === 'left') {
+            player.pressingLeft = data.state;
+		}
+        else if(data.inputId === 'right') {
+            player.pressingRight = data.state;
+		}        
+		else if(data.inputId === 'up') {
+            player.pressingUp = data.state;
+		}
+        else if(data.inputId === 'down') {
+            player.pressingDown = data.state;
+		}
+		else if(data.inputId === 'attack') {
+			player.pressingAttack = data.state;
+		}
+		else if(data.inputId === 'mouseAngle') {
+			player.mouseAngle = data.state;
+		}
+	});
+	socket.emit('newPlayer', {
+		socketId: socket.id,
+		players: Game.players
+		});
+	//initPack.push(player);
+	console.log('player: '  + Object.keys(player));
+	console.log('sockId: ' + socket.id);
 	console.log('slatt');
-	socket.on('disconnect',function(){
-		delete player;
-		removePack.players.push(socket.id);
-		console.log('gang' + removePack);
+	socket.on('disconnect', function(){
+		let DCPlayerName = Game.players[socket.id].id;
+		delete Game.players[socket.id];
+		console.log('Removed Player ' + DCPlayerName);
     });
 });
  
 setInterval(function() {  
     for(let i in SOCKET_LIST){
         let socket = SOCKET_LIST[i];
-		socket.emit('newPlayer', initPack);
+		//socket.emit('newPlayer', initPack);
 		socket.emit('update', Game.getUpdates());
-		socket.emit('remove', removePack);
     }
 	
-	initPack.player = [];
-	removePack.player = [];
+	//initPack.player = [];
 }, 40);
 
 /*setInterval(function (){

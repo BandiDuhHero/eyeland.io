@@ -63,29 +63,12 @@ let getBaseData = function(id, data) {
 	}
 }
 exports.getUpdates = function() {
-	var pack = [];
-	for(var i in players){
-		players[i].updatePosition();
-		pack.push(players[i]);		
+	let data = {};
+	for(var i in players) {
+		players[i].updatePosition();	
 	}
-	return pack;
-	}
-exports.sendPositions = function() {
-	let pack = {}
-
-    for(let i in players) {
-        let player = players[i];
-		let playerpack = [];
-        player.updatePosition();
-        playerpack.push({
-            x:player.x,
-            y:player.y,
-            id:player.id
-        });
-			pack.player = playerpack;
-    }
-	console.log('sendpositions:' + pack)
-    return pack;
+	data.players = players;
+	return data;
 }
 
 exports.Blink = Blink;
