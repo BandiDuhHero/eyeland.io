@@ -3,7 +3,7 @@ class Armor {
         this.id = id;
         this.def = def;
         this.heaviness = heaviness;
-		this.isActive = false;
+	this.isActive = false;
     }
 }
 
